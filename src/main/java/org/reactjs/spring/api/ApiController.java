@@ -1,6 +1,7 @@
 package org.reactjs.spring.api;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,16 +14,27 @@ import java.util.UUID;
  * Created by mashhur on 3/22/17.
  */
 
+@RequestMapping(value = "/api")
 @RestController
 public class ApiController {
 
-    @RequestMapping("/api")
-    @ResponseBody
-    String home() {
-        return "Welcome to MovieGram!";
+    @RequestMapping(method = RequestMethod.GET)
+    String index() {
+        return "Welcome to Spring-React API Controller!";
     }
 
-    @RequestMapping("/api/getUniqueKey")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @ResponseBody
+    List<User> getUsers() {
+        ArrayList<User> userList = new ArrayList<>();
+        User mstt = new User(1, "mashhur1", "mstt", "no idea who he is!");
+        User sttm = new User(2, "mashhur2", "sttm", "no idea who he is too!");
+        userList.add(mstt);
+        userList.add(sttm);
+        return userList;
+    }
+
+    @RequestMapping(value = "/getUniqueKey")
     @ResponseBody
     String generateKey() {
         String strRet = "";
@@ -37,16 +49,6 @@ public class ApiController {
         }
 
         return strRet;
-    }
-
-    @RequestMapping("/api/users")
-    @ResponseBody
-    List<User> getUsers() {
-        ArrayList<User> userList = new ArrayList<>();
-        User mstt = new User("mashhur", "stt", "no idea who he is!");
-        userList.add(mstt);
-
-        return userList;
     }
 
 }
