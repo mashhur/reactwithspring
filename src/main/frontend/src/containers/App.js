@@ -39,7 +39,7 @@ export class App extends Component {
                         this.props.user_list.user_list ?
                             this.props.user_list.user_list.map((user) => {
                                 return(
-                                    <li key={user.id}>{user.firstName}, {user.lastName}, {user.description}</li>
+                                    <li key={user.id}>{user.firstName}, {user.lastName}, {user.email}</li>
                                 )
                             }) :
                             console.log("after", this.props.user_list)

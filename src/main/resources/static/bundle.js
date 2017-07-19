@@ -22845,7 +22845,7 @@
 	                            ', ',
 	                            user.lastName,
 	                            ', ',
-	                            user.description
+	                            user.email
 	                        );
 	                    }) : console.log("after", this.props.user_list)
 	                )

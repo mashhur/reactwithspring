@@ -17,7 +17,6 @@
     <properties>
         <junit.version>4.12</junit.version>
         <java.version>1.8</java.version>
-        <eclipse.compiler.version>4.6.1</eclipse.compiler.version>
         <webjars.version>3.3.7</webjars.version>
     </properties>
 
@@ -65,7 +64,7 @@
         </dependency>
         <!-- Other dependencies-->
 
-        <dependency>
+        <!-- <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.5.0</version>
@@ -74,6 +73,18 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.5.0</version>
+        </dependency> -->
+
+        <!-- Spring JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- MySQL dependency-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
     </dependencies>

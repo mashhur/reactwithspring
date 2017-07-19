@@ -1,5 +1,11 @@
 package org.reactjs.spring.api;
 
+import org.reactjs.spring.api.entity.User;
+import org.reactjs.spring.api.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -7,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,25 +25,25 @@ import java.util.UUID;
 @RestController
 public class ApiController {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @RequestMapping(method = RequestMethod.GET)
-    String index() {
+    public String index() {
         return "Welcome to Spring-React API Controller!";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    List<User> getUsers() {
-        ArrayList<User> userList = new ArrayList<>();
-        User mstt = new User(1, "mashhur1", "mstt", "no idea who he is!");
-        User sttm = new User(2, "mashhur2", "sttm", "no idea who he is too!");
-        userList.add(mstt);
-        userList.add(sttm);
-        return userList;
+    public Iterable<User> getUsers() {
+
+        // For pagination : userRepository.findAll(new PageRequest(1, 20)
+        return userRepository.findAll();
     }
 
     @RequestMapping(value = "/getUniqueKey")
     @ResponseBody
-    String generateKey() {
+    protected String generateKey() {
         String strRet = "";
         try {
             // generate globally unique key (considering host name)
